@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-6 mt-5">
+      <h1><%= form_title %></h1>
+      <%= form_for @product do |f| %>
+        <div class="form-group">
+          <%= f.text_field :name, class: "form-control input-lg", placeholder: "Enter product's name"%>
+        </div>
+        <div class="form-group">
+          <%= f.number_field :price, class: "form-control input-lg", placeholder: "Enter product's price" %>
+        </div>
+        <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |g| %>
+          <div class="field form-check">
+            <%= g.label class:"checkbox" do%>
+              <%= g.check_box %>
+              <%= g.text %>
+            <%end%>
+          </div>
+        <% end %>
+        <div class="form-group">
+          <%= f.submit form_title, class: "btn btn-primary btn-lg btn-block" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
